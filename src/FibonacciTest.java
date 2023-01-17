@@ -1,36 +1,55 @@
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FibonacciTest {
-    @org.junit.jupiter.api.Test
-    void get_N_Fibonacci_Number() throws Exception {
-        assertThrows(Exception.class, () -> { int a = Fibonacci.Get_N_Fibonacci_Number(-1); });
-        assertEquals(0, Fibonacci.Get_N_Fibonacci_Number(0));
-        assertEquals(1, Fibonacci.Get_N_Fibonacci_Number(1));
-        assertEquals(1, Fibonacci.Get_N_Fibonacci_Number(2));
-        assertEquals(8, Fibonacci.Get_N_Fibonacci_Number(6));
-        assertEquals(17711, Fibonacci.Get_N_Fibonacci_Number(22));
-        assertNotEquals(10, Fibonacci.Get_N_Fibonacci_Number(9));
+    @Test
+    void getNFibonacciNumber() {
+        OneFibonacciNumber oneFibonacciNumber = new OneFibonacciNumber();
+        assertThrows(RuntimeException.class, () -> oneFibonacciNumber.getNFibonacciNumber(-1));
+        assertEquals(0, oneFibonacciNumber.getNFibonacciNumber(0));
+        assertEquals(1, oneFibonacciNumber.getNFibonacciNumber(1));
+        assertEquals(1, oneFibonacciNumber.getNFibonacciNumber(2));
+        assertEquals(8, oneFibonacciNumber.getNFibonacciNumber(6));
+        assertEquals(17711, oneFibonacciNumber.getNFibonacciNumber(22));
+        assertNotEquals(10, oneFibonacciNumber.getNFibonacciNumber(9));
     }
 
-    @org.junit.jupiter.api.Test
-    void get_First_N_Fibonacci_Numbers() throws Exception {
+    @Test
+    void getFirstNFibonacciNumbers() {
+        ALotFibonacciNumbers aLotFibonacciNumbers = new ALotFibonacciNumbers();
         ArrayList<Integer> a = new ArrayList<>();
-        assertEquals(a, Fibonacci.Get_First_N_Fibonacci_Numbers(-1));
+        assertEquals(a, aLotFibonacciNumbers.getFirstNFibonacciNumbers(-1));
         a.add(0);
-        assertEquals(a, Fibonacci.Get_First_N_Fibonacci_Numbers(0));
+        assertEquals(a, aLotFibonacciNumbers.getFirstNFibonacciNumbers(0));
         a.add(1);
-        assertEquals(a, Fibonacci.Get_First_N_Fibonacci_Numbers(1));
+        assertEquals(a, aLotFibonacciNumbers.getFirstNFibonacciNumbers(1));
         a.add(1);
-        assertEquals(a, Fibonacci.Get_First_N_Fibonacci_Numbers(2));
+        assertEquals(a, aLotFibonacciNumbers.getFirstNFibonacciNumbers(2));
         a.add(2);
         a.add(3);
         a.add(5);
-        assertEquals(a, Fibonacci.Get_First_N_Fibonacci_Numbers(5));
+        assertEquals(a, aLotFibonacciNumbers.getFirstNFibonacciNumbers(5));
         a.clear();
-        assertNotEquals(a, Fibonacci.Get_First_N_Fibonacci_Numbers(10));
+        assertNotEquals(a, aLotFibonacciNumbers.getFirstNFibonacciNumbers(10));
     }
 
-    int n;
+    @Test
+    void buildString() {
+        BuildString buildString = new BuildString();
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        assertEquals("", buildString.buildString(arrayList));
+        arrayList.add(1);
+        assertEquals("1 ", buildString.buildString(arrayList));
+        arrayList.add(2);
+        assertEquals("1 2 ", buildString.buildString(arrayList));
+        arrayList.add(3);
+        assertEquals("1 2 3 ", buildString.buildString(arrayList));
+        arrayList.add(4);
+        arrayList.add(5);
+        arrayList.add(6);
+        assertEquals("1 2 3 4 5 6 ", buildString.buildString(arrayList));
+    }
 }
